@@ -1,11 +1,12 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Linkedin, ArrowDown, ArrowRight } from 'lucide-react';
+import { sendEmail, EmailData } from '@/services/emailService';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -14,6 +15,8 @@ const Index = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,11 +84,35 @@ const Index = () => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the form data to a backend
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const emailData: EmailData = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      };
+
+      await sendEmail(emailData);
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -358,6 +385,7 @@ const Index = () => {
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="bg-dark-700 border-gray-600 focus:border-neon-blue"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -368,6 +396,7 @@ const Index = () => {
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="bg-dark-700 border-gray-600 focus:border-neon-blue"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -377,13 +406,15 @@ const Index = () => {
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     className="bg-dark-700 border-gray-600 focus:border-neon-blue min-h-[120px]"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <Button 
                   type="submit"
                   className="w-full cyber-border bg-transparent hover:bg-neon-blue/10 text-neon-blue border-neon-blue"
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </Card>
