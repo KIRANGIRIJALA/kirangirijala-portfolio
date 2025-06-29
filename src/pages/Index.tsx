@@ -2,21 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Linkedin, ArrowDown, ArrowRight } from 'lucide-react';
-import { sendEmail, EmailData } from '@/services/emailService';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,37 +72,6 @@ const Index = () => {
       period: '2022'
     }
   ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const emailData: EmailData = {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
-      };
-
-      await sendEmail(emailData);
-      
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-
-      // Reset form
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      toast({
-        title: "Failed to send message",
-        description: "Please try again or contact me directly via email.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -341,7 +299,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <h2 className="font-poppins font-bold text-4xl mb-12 text-center gradient-text">Contact Me</h2>
           
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto text-center">
             <div className="animate-fade-in">
               <h3 className="font-poppins font-semibold text-2xl mb-6 text-neon-teal">Get In Touch</h3>
               <p className="text-gray-300 mb-8">
@@ -349,75 +307,32 @@ const Index = () => {
                 Feel free to reach out!
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <a 
                   href="mailto:kirangirijala888@gmail.com"
-                  className="flex items-center text-gray-300 hover:text-neon-blue transition-colors"
+                  className="flex items-center justify-center text-gray-300 hover:text-neon-blue transition-colors text-lg"
                 >
-                  <Mail className="h-5 w-5 mr-3" />
+                  <Mail className="h-6 w-6 mr-3" />
                   kirangirijala888@gmail.com
                 </a>
                 <a 
                   href="tel:+916303278776"
-                  className="flex items-center text-gray-300 hover:text-neon-teal transition-colors"
+                  className="flex items-center justify-center text-gray-300 hover:text-neon-teal transition-colors text-lg"
                 >
-                  <Phone className="h-5 w-5 mr-3" />
+                  <Phone className="h-6 w-6 mr-3" />
                   +91 6303278776
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/kiran-girijala"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-300 hover:text-neon-green transition-colors"
+                  className="flex items-center justify-center text-gray-300 hover:text-neon-green transition-colors text-lg"
                 >
-                  <Linkedin className="h-5 w-5 mr-3" />
+                  <Linkedin className="h-6 w-6 mr-3" />
                   LinkedIn Profile
                 </a>
               </div>
             </div>
-            
-            <Card className="glass-effect p-6">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Input
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="bg-dark-700 border-gray-600 focus:border-neon-blue"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="bg-dark-700 border-gray-600 focus:border-neon-blue"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="bg-dark-700 border-gray-600 focus:border-neon-blue min-h-[120px]"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-                <Button 
-                  type="submit"
-                  className="w-full cyber-border bg-transparent hover:bg-neon-blue/10 text-neon-blue border-neon-blue"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </form>
-            </Card>
           </div>
         </div>
       </section>
