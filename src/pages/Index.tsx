@@ -32,7 +32,7 @@ const Index = () => {
 
   const skills = [
     { category: 'Frontend', items: ['HTML', 'CSS', 'JavaScript'], level: 85 },
-    { category: 'Backend', items: ['Python', 'Java'], level: 90 },
+    { category: 'Backend', items: ['Python', 'Java', 'R language'], level: 90 },
     { category: 'Database', items: ['MySQL', 'PHP'], level: 80 },
     { category: 'Tools & IDEs', items: ['Jupyter', 'VS Code', 'Tableau', 'Android Studio', 'Unity', 'IntelliJ'], level: 88 }
   ];
@@ -188,6 +188,16 @@ const Index = () => {
                     <h4 className="font-semibold text-white">Bachelor of Science (B.Sc)</h4>
                     <p className="text-gray-400">Andhra Loyola College</p>
                     <p className="text-sm text-neon-blue">75% Grade</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white">Intermediate (MPC)</h4>
+                    <p className="text-gray-400">S.C.I.M.GOVT.JR COLLEGE</p>
+                    <p className="text-sm text-neon-blue">63% Grade</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white">10th SSC</h4>
+                    <p className="text-gray-400">Z.P.H.BOYS HIGH SCHOOL</p>
+                    <p className="text-sm text-neon-blue">95% Grade</p>
                   </div>
                 </div>
               </Card>
