@@ -40,6 +40,13 @@ const Index = () => {
 
   const projects = [
     {
+      title: 'AI-Based Resume Ranker',
+      description: 'Developed a web app that scores and ranks resumes based on job descriptions using TF-IDF vectorization and cosine similarity.',
+      tech: ['Python', 'Streamlit', 'scikit-learn', 'NLP', 'PyMuPDF'],
+      highlights: ['Text extraction from uploaded PDFs', 'NLP preprocessing (tokenization, stopword removal)', 'Real-time match scores with interactive feedback', 'Improved job–resume alignment analysis'],
+      githubUrl: 'https://github.com/KIRANGIRIJALA/AI-Based-Resume-Ranker'
+    },
+    {
       title: 'AI Fitness Pose Tracker & Push-Up Counter',
       description: 'Built a real-time fitness monitoring system that uses a webcam to detect human body posture and track push-up repetitions using pose estimation.',
       tech: ['Python', 'OpenCV', 'MediaPipe', 'NumPy'],
