@@ -200,6 +200,7 @@ const Index = () => {
                   <div>
                     <h4 className="font-semibold text-white">Master of Computer Applications (MCA)</h4>
                     <p className="text-gray-400">Jain University</p>
+                    <p className="text-sm text-neon-blue">90% Grade</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Bachelor of Science (B.Sc)</h4>
