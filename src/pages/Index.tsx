@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, Linkedin, ArrowDown, ArrowRight } from 'lucide-react';
+import { Mail, Phone, Linkedin, ArrowDown, ArrowRight, Github } from 'lucide-react';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -43,19 +43,22 @@ const Index = () => {
       title: 'AI Fitness Pose Tracker & Push-Up Counter',
       description: 'Built a real-time fitness monitoring system that uses a webcam to detect human body posture and track push-up repetitions using pose estimation.',
       tech: ['Python', 'OpenCV', 'MediaPipe', 'NumPy'],
-      highlights: ['Landmark detection via MediaPipe', 'Joint angle calculations for form feedback', 'Live visual feedback overlays on video']
+      highlights: ['Landmark detection via MediaPipe', 'Joint angle calculations for form feedback', 'Live visual feedback overlays on video'],
+      githubUrl: 'https://github.com/KIRANGIRIJALA/AI-Fitness-Pose-Tracker'
     },
     {
       title: 'M.O.T Chatbot - Android App',
       description: 'AI-powered chatbot built using Hugging Face + Android Studio',
       tech: ['Python', 'Gradio', 'Java', 'HTML', 'Android Studio'],
-      highlights: ['Natural Language Processing', 'Android Development', 'API Integration']
+      highlights: ['Natural Language Processing', 'Android Development', 'API Integration'],
+      githubUrl: 'https://github.com/KIRANGIRIJALA/M.O.T'
     },
     {
       title: 'Stock Price Prediction using LSTM Neural Networks',
       description: 'Used yFinance data, TensorFlow, LSTM, visualizations with Matplotlib',
       tech: ['Python', 'TensorFlow', 'LSTM', 'Matplotlib', 'yFinance'],
-      highlights: ['Deep Learning', 'Data Preprocessing', 'Time Series Forecasting']
+      highlights: ['Deep Learning', 'Data Preprocessing', 'Time Series Forecasting'],
+      githubUrl: 'https://github.com/KIRANGIRIJALA/SPPUL'
     }
   ];
 
@@ -278,9 +281,20 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="glass-effect p-6 hover:border-neon-teal/50 transition-all duration-300 group">
-                <h3 className="font-poppins font-semibold text-xl mb-3 text-white group-hover:text-neon-teal transition-colors">
-                  {project.title}
-                </h3>
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-poppins font-semibold text-xl text-white group-hover:text-neon-teal transition-colors flex-1">
+                    {project.title}
+                  </h3>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-4 p-2 rounded-full hover:bg-gray-800 transition-colors group"
+                    title="View on GitHub"
+                  >
+                    <Github className="h-5 w-5 text-gray-400 group-hover:text-neon-blue transition-colors" />
+                  </a>
+                </div>
                 <p className="text-gray-300 mb-4">{project.description}</p>
                 
                 <div className="mb-4">
