@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -38,6 +39,12 @@ const Index = () => {
   ];
 
   const projects = [
+    {
+      title: 'AI Fitness Pose Tracker & Push-Up Counter',
+      description: 'Built a real-time fitness monitoring system that uses a webcam to detect human body posture and track push-up repetitions using pose estimation.',
+      tech: ['Python', 'OpenCV', 'MediaPipe', 'NumPy'],
+      highlights: ['Landmark detection via MediaPipe', 'Joint angle calculations for form feedback', 'Live visual feedback overlays on video']
+    },
     {
       title: 'M.O.T Chatbot - Android App',
       description: 'AI-powered chatbot built using Hugging Face + Android Studio',
